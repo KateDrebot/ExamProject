@@ -27,6 +27,11 @@ public class HeaderElement extends CommonActionsWithElements {
     public boolean isLinkLogOutDisplayed() {
         return isElementDisplayed(linkLogOut);
     }
+
+    public boolean isLinkLogInDisplayed() {
+        return isElementDisplayed(linkLogIn);
+    }
+
     public String checkUserNameInHeader() {
         return linkUserName.getText();
     }

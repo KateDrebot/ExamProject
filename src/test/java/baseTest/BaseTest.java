@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
+import pages.LoginPage;
 
 import java.time.Duration;
 
@@ -15,6 +16,7 @@ public class BaseTest {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     protected HomePage homePage;
+    protected LoginPage loginPage;
 
     @Before
     public void setUp() {
@@ -25,6 +27,7 @@ public class BaseTest {
         logger.info("browser was opened");
 
         homePage = new HomePage(webDriver);
+        loginPage = new LoginPage(webDriver);
 
     }
 

@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,10 @@ public class LoginPage extends ParentPage {
     private WebElement inputEmail;
     @FindBy(id = "Password")
     private WebElement inputPassword;
+//    @FindBy(xpath = "//.//span[text()='Please enter a valid email address.']")
+//    private WebElement alertElement;
+
+    private String alertLocator = ".//*[text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -19,7 +24,7 @@ public class LoginPage extends ParentPage {
 
     @Override
     String getRelativeUrlPage() {
-        return "login";
+        return "/login";
     }
 
     public LoginPage checkIsRedirectToLoginPage() {
@@ -39,9 +44,15 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public HomePage clickOnButtonLogIn(){
+    public HomePage clickOnButtonLogIn() {
         clickOnElement(buttonLogIn);
         return new HomePage(webDriver);
+    }
+
+    public LoginPage isTextInAlertDisplayed(String alertText) {
+
+        Assert.assertTrue("Element isn't find", isElementDisplayed(String.format(alertLocator, alertText)));
+        return this;
     }
 
 }
