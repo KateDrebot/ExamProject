@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -80,6 +81,18 @@ public class CommonActionsWithElements {
             webElement.clear();
             webElement.sendKeys(text);
             logger.info("text '" + text + "' was inputted to element '" + getElementName(webElement) + "'");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectRadioButton(String xpath, String value) {
+        try {
+            WebElement webElement = webDriver.findElement(By.xpath(String.format(xpath, value)));
+            String name = getElementName(webElement);
+            webElement.click();
+            logger.info("'" + name + "' was selected");
+
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

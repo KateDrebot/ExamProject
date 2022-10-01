@@ -27,12 +27,14 @@ public class LoginParametriseTest extends BaseTest {
     public void invalidLogin(String email, String password, String expectedError) {
 
         homePage.openStartPage()
-                .getHeaderElement().clickOnLogInHeader()
+                .getHeaderElementLogined().clickOnLogInHeader()
+                //.getHeaderElement().clickOnLogInHeader()
                 .enterEmailIntoEmailInput(email)
                 .enterPasswordIntoPasswordInput(password)
                 .clickOnButtonLogIn();
         loginPage.isTextInAlertDisplayed(expectedError);
-        Assert.assertTrue("Link 'LogOut' is displayed", homePage.getHeaderElement().isLinkLogInDisplayed());
+        Assert.assertTrue("Link 'LogOut' is displayed", homePage.getHeaderElementLogined().isLinkLogInDisplayed());
+        //homePage.getHeaderElement().isLinkLogInDisplayed());
 
 
     }

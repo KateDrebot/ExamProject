@@ -4,36 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
-import pages.LoginPage;
+import pages.ShoppingCartPage;
 
 public class HeaderElement extends CommonActionsWithElements {
+    @FindBy(linkText = "/cart")//.//a[@class='ico-cart']
+    private WebElement linkShoppingCart;
 
-    @FindBy(xpath = ".//a[@href='/login']")
-    private WebElement linkLogIn;
-    @FindBy(xpath = ".//a[@href='/logout']")
-    private WebElement linkLogOut;
-    @FindBy(xpath = ".//div[@class='header-links']/UL//LI[1]")
-    private WebElement linkUserName;
+    public ShoppingCartPage clickOnShoppingCart() {
+        clickOnElement(linkShoppingCart);
+        return new ShoppingCartPage(webDriver);
+    }
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
-    }
-
-    public LoginPage clickOnLogInHeader() {
-        clickOnElement(linkLogIn);
-        return new LoginPage(webDriver);
-    }
-
-    public boolean isLinkLogOutDisplayed() {
-        return isElementDisplayed(linkLogOut);
-    }
-
-    public boolean isLinkLogInDisplayed() {
-        return isElementDisplayed(linkLogIn);
-    }
-
-    public String checkUserNameInHeader() {
-        return linkUserName.getText();
     }
 
 }
